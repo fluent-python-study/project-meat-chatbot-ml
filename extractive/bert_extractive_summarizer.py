@@ -17,14 +17,14 @@ def get_args():
 
 
 class BertExtractiveSummarizer(object):
-    def __init__(self, args):
-        self._load_custom_model(args)
+    def __init__(self, bert_name):
+        self._load_custom_model(bert_name)
         
-    def _load_custom_model(self, args):
-        custom_config = AutoConfig.from_pretrained(args.bname)    
+    def _load_custom_model(self, bert_name):
+        custom_config = AutoConfig.from_pretrained(bert_name)    
         custom_config.output_hidden_states = True
         custom_tokenizer = get_tokenizer()
-        custom_model = AutoModel.from_pretrained(args.bname, config=custom_config)
+        custom_model = AutoModel.from_pretrained(bert_name, config=custom_config)
         
         self.model = Summarizer(custom_model=custom_model,
                 custom_tokenizer=custom_tokenizer)
@@ -39,7 +39,7 @@ def main():
     args = get_args()
     chats = load_kakao_csv(args.fname)
     
-    summarizer = BertExtractiveSummarizer(args)
+    summarizer = BertExtractiveSummarizer(bert_name=args.bname)
     print('Origin')
     print(chats)
 
