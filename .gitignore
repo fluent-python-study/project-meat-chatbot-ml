@@ -130,3 +130,14 @@ dmypy.json
 
 # gitignore
 utils
+
+# dataset
+data/
+*_tokenizer/
+
+# notebook
+notebook/
+
+# experiments checkpoint
+*.cp
+
