@@ -1,4 +1,6 @@
 import csv
+import json
+import random
 
 import numpy as np
 import torch
@@ -18,6 +20,12 @@ def load_kakao_csv(fname:str):
             chat = ' '.join(row[1:]) # without date
             chats.append(chat)
     return chats[1:] # without header
+
+
+def load_json(fname:str):
+    with open(fname) as fp:
+        obj = json.load(fp)
+    return obj
 
 
 def set_seed(seed):
